@@ -42,3 +42,65 @@ https://developer.hashicorp.com/terraform/install?product_intent=terraform#Linux
 terraform -v
 
 =====================================================
+
+
+authenticate 
+
+aws configure : aww commands
+
+else roles : inside ur main account
+
+straight away in the code , provide access/secret acces skey
+
+
+
+-- aws commandline way to authenticate tf to my aws account :
+access key /secret accesskey
+
+
+---
+aws cli install :
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+
+apt install unzip -y
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+
+
+
+root@main-tf:~# aws s3 ls
+
+Unable to locate credentials. You can configure credentials by running "aws configure".
+root@main-tf:~# aws configure
+AWS Access Key ID [None]: AKI
+AWS Secret Access Key [None]: DhUX
+Default region name [None]: ap-south-1
+Default output format [None]:
+root@main-tf:~#
+
+ aws s3 ls
+   21  ls
+   22  ls -a
+   23  cd .aws
+   24  ls
+   25  cat credentials
+   26  clear
+   27  cd ..
+   28  ls
+
+
+
+----
+
+
+provider "aws" {
+  region     = "us-west-2"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+
+
+======================================================================
