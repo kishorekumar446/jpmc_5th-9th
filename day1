@@ -26,4 +26,19 @@ Storage (volumes)
 
 ==================
 
+logged in to ou aws machine ..
 
+ sudo -i
+root@ip-172-31-42-21:~# hostnamectl set-hostname main-tf
+root@ip-172-31-42-21:~# bash
+
+
+
+
+installation of terraform software ..
+
+https://developer.hashicorp.com/terraform/install?product_intent=terraform#Linux
+
+terraform -v
+
+=====================================================
