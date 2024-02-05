@@ -1,1 +1,30 @@
 
+
+region : mumbai 
+machine : no functionality attached and has an ip
+
+any functionality attached : linux server . win server , app server , db , web server 
+
+--- pvt : source 
+pubkey : dest
+--
+
+===================
+
+create server main-tf :
+
+Software Image (AMI)
+ami :
+CentOS 7 (x86_64) - with Updates HVM
+
+Virtual server type (instance type)
+t2.micro
+Firewall (security group)
+New security group
+Storage (volumes)
+1 volume(s) - 10 GiB
+
+
+==================
+
+
