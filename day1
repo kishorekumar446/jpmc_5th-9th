@@ -15,8 +15,7 @@ create server main-tf :
 
 Software Image (AMI)
 ami :
-CentOS 7 (x86_64) - with Updates HVM
-
+Canonical, Ubuntu, 20.04 LTS, amd64 focal image build on 2023-10-25
 Virtual server type (instance type)
 t2.micro
 Firewall (security group)
