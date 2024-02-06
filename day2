@@ -225,7 +225,7 @@ terraform state list
 
 ========================================================
 
-
+## mv first.tf first ( so that tf doesnt captures 2 files at once )
 
 
 root@main-tf:~# cat sec.tf
