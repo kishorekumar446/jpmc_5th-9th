@@ -224,3 +224,107 @@ terraform init
 terraform state list
 
 ========================================================
+
+
+
+
+root@main-tf:~# cat sec.tf
+provider "aws" {
+region="ap-south-1"
+}
+
+
+resource "aws_security_group" "securityg" {
+  name        = "6thsecg"
+  description = "Allow TLS inbound traffic and all outbound traffic"
+  vpc_id      = "vpc-027b7a70751225ee4"
+
+  tags = {
+    Name = "allow_tls"
+  }
+
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = [var.rk]
+  }
+
+  ingress {
+    from_port        = 3389
+    to_port          = 3389
+    protocol         = "tcp"
+    cidr_blocks      = [var.rk]
+  }
+
+  ingress {
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = [var.rk]
+  }
+
+  ingress {
+    from_port        = 3389
+    to_port          = 3389
+    protocol         = "tcp"
+    cidr_blocks      = [var.rk]
+  }
+
+  ingress {
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = [var.rk]
+  }
+
+}
+
+resource "aws_ebs_volume" "example" {
+  availability_zone = "ap-south-1b"
+  size              = 10
+
+  tags = {
+    Name = "HelloWorldjpmc"
+  }
+}
+
+resource "aws_volume_attachment" "ebs_att" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.example.id
+  instance_id = aws_instance.ec2.id
+}
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+  instance_type           = "t2.micro"
+  availability_zone= "ap-south-1b"
+  vpc_security_group_ids=["sg-056519f790432fa31"]
+  tags = {
+    Name = "raman-test"
+  }
+}
+
+
+output "myservers-pubip" {
+value=[aws_instance.ec2.public_ip]
+}
+
+output "myservers-pvtip" {
+value=[aws_instance.ec2.private_ip]
+}
+
+
+output "myservers-type" {
+value=[aws_instance.ec2.instance_type]
+}
+
+
+
+
+root@main-tf:~# cat variable.tf
+variable "rk" {
+default= "0.0.0.0/0"
+}
+
+=======================================================================
