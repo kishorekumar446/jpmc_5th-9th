@@ -171,3 +171,56 @@ resource "aws_instance" "ec2" {
   205  terraform destroy -target github_repository.repo
 
 ================================================================
+
+desired state > current state...
+raman-test : code
+manually : chnge name 
+
+terraform plan , apply 
+terraform refresh ...........
+
+
+
+
+desired state : "raman-test" 
+lkgc : raman-test >> "khanna-test" >> raman-test
+actual /current state : raman-test >>>> khanna-test>> raman-test
+
+
+
+terraform plan, apply 
+
+terraform refresh 
+
+-----------------------
+terraform init
+  228  clear
+  229  ls
+  230  cat first.tf
+  231  clear
+  232  cat first.tf
+  233  clear
+  234  cat first.tf
+  235  terraform validate
+  236  terraform plan
+  237  ls
+  238  terraform apply
+  239  ls
+  240  terraform plan
+  241  ls
+  242  cat first.tf
+  243  cat terraform.tfstate | grep name
+  244  cat terraform.tfstate | grep -i name
+  245  clear
+  246  cat first.tf
+  247  cat terraform.tfstate | grep -i name
+  248  clear
+  249  terraform refresh
+  250  cat first.tf
+  251  cat terraform.tfstate | grep -i name
+  252  terraform apply
+  253  cat first.tf
+  254  cat terraform.tfstate | grep -i name
+terraform state list
+
+========================================================
