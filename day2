@@ -1,0 +1,72 @@
+root@main-tf:~# cat first.tf
+provider "aws" {
+  region     = "ap-south-1"
+#  access_key = "my-access-key"
+#  secret_key = "my-secret-key"
+}
+
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+  instance_type           = "t2.micro"
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-test"
+  }
+}
+
+
+
+
+
+
+cat first.tf
+   99  pwd
+  100  terraform init
+  101  ls
+  102  ls -a
+  103  cd .terraform
+  104  ls
+  105  cd providers/
+  106  ls
+  107  cd registry.terraform.io/
+  108  ls
+  109  cd hashicorp/
+  110  ls
+  111  cd aws/
+  112  ls
+  113  cd 5.35.0/
+  114  ls
+  115  cd linux_amd64/
+  116  ls
+  117  cd /root/
+  118  clear
+  119  ls
+  120  cat first.tf
+  121  clear
+  122  ls
+  123  terraform validate
+  124  terraform plan
+  125  vi first.tf
+  126  terraform plan
+  127  vi first.tf
+  128  terraform plan
+  129  terraform validate
+  130  vi first.tf
+  131  clear
+  132  terraform plan
+  133  terraform apply
+  134  ls
+  135  cat terraform.tfstate | grep -i type
+  136  cat terraform.tfstate
+  137  clear
+  138  ls
+  139  cat first.tf
+  140  vi first.tf
+  141  ls
+  142  terraform validate
+  143  terraform plan
+  144  terraform apply -auto-approve
+
+
+  ==================================================
