@@ -70,3 +70,104 @@ cat first.tf
 
 
   ==================================================
+
+
+root@main-tf:~# cat azure.tf
+provider "azurerm" {
+  features {}
+}
+root@main-tf:~# cat git.tf
+terraform {
+  required_providers {
+    github = {
+      source = "integrations/github"
+      version = "6.0.0-rc1"
+    }
+  }
+}
+
+provider "github" {
+  token = "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"
+}
+
+resource "github_repository" "repo" {
+  name        = "mytest-repo"
+  description = "My awesome codebase"
+  visibility = "public"
+}
+root@main-tf:~# cat first.tf
+provider "aws" {
+  region     = "ap-south-1"
+#  access_key = "my-access-key"
+#  secret_key = "my-secret-key"
+}
+
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+  instance_type           = "t2.micro"
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-test"
+  }
+}
+
+
+
+
+
+ vi azure.tf
+  154  ls
+  155  terraform init
+  156  ls
+  157  ls -a
+  158  cd .terraform
+  159  ls
+  160  cd providers/
+  161  ls
+  162  cd registry.terraform.io/
+  163  ls
+  164  cd hashicorp/
+  165  ls
+  166  cd /root/
+  167  ls
+  168  clear
+  169  vi git.tf
+  170  terraform state list
+  171  ls
+  172  vi git.tf
+  173  terraform init
+  174  vi git.tf
+  175  terraform init
+  176  ls
+  177  ls -a
+  178  cd .terraform.d
+  179  cd ..
+  180  cd .terraform
+  181  ls
+  182  cd providers/
+  183  ls
+  184  cd registry.terraform.io/
+  185  ls
+  186  cd integrations/
+  187  ls
+  188  cd github/
+  189  ls
+  190  cd 6.0.0-rc1/
+  191  ls
+  192  cd /root/
+  193  ls
+  194  clear
+  195  terraform validate
+  196  vi git.tf
+  197  terraform apply
+  198  terraform state list
+  199  ls
+  200  cat terraform.tfstate
+  201  clear
+  202  ls
+  203  terraform state list
+  204  terraform destory -target github_repository.repo
+  205  terraform destroy -target github_repository.repo
+
+================================================================
