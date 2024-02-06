@@ -328,3 +328,33 @@ default= "0.0.0.0/0"
 }
 
 =======================================================================
+
+
+ cat variable.tf
+  344  history
+  345  clear
+  346  ls
+  347  cat first
+  348  vi sec.tf
+  349  terraform state list
+  350  l
+  351  ls
+  352  clear
+  353  vi sec.tf
+  354  terraform plan
+  355  vi sec.tf
+  356  terraform plan
+  357  vi sec.tf
+  358  terraform validate
+  359  terraform plan
+  360  vi sec.tf
+  361  clear
+  362  terraform plan
+  363  terraform apply
+  364  terraform state list
+  365  ls
+  366  cat sec.tf
+  367  cat variable.tf
+  368  ls
+
+====================================================
