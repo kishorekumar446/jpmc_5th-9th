@@ -1,0 +1,139 @@
+==================================
+
+diff approaches :
+
+1.
+default value in variables block
+
+2.
+nt provide a default value in var block
+ui mode
+
+3
+terraform.tfvars(secrets) and custom.tfvars (raman.tfvars, sonali.tfvars)
+
+4.env varibles
+
+export TF_VAR_instance_type=""
+
+5. assgn a var on the fly
+
+
+
+root@main-tf:~# cat ec2.tf
+provider "aws" {
+region="ap-south-1"
+}
+
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+  instance_type           = var.type
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-ec2"
+  }
+}
+
+root@main-tf:~# cat variable.tf
+variable "rk" {
+default= "0.0.0.0/0"
+}
+variable "type" {
+default="t2.micro"
+}
+root@main-tf:~# cat rk.tfvars
+type="t2.large"
+
+
+
+
+ terraform plan
+  405  clear
+  406  ls
+  407  vi variable.tf
+  408  vi rk.tfvars
+  409  cat ec2.tf
+  410  cat variable.tf
+  411  ls
+  412  terraform plan -var-file="rk.tfvars"
+  413  terraform plan
+  414  ls
+  415  vi variable.tf
+  416  terraform plan
+  417  terraform plan -var-file="rk.tfvars"
+  418  vi variable.tf
+  419  clear
+  420  ls
+  421  cat rk.tfvars
+  422  cat variable.tf
+  423  terraform plan -var="type=t2.medium"
+
+
+------------------------------------------------
+
+
+list  :
+
+
+root@main-tf:~# cat ec2.tf
+provider "aws" {
+region="ap-south-1"
+}
+
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+  instance_type           = var.type[0]
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-ec2"
+  }
+}
+
+root@main-tf:~# cat variable.tf
+variable "rk" {
+default= "0.0.0.0/0"
+}
+variable "type" {
+type=list
+default=["t2.micro","t2.medium","t2.large"]
+}
+
+
+------------------------------------------
+
+map:
+
+root@main-tf:~# cat ec2.tf
+provider "aws" {
+region="ap-south-1"
+}
+
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+ # instance_type           = var.type["dev"]
+  instance_type           = var.type["prod"]
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-ec2"
+  }
+}
+
+root@main-tf:~# cat variable.tf
+variable "rk" {
+default= "0.0.0.0/0"
+}
+variable "type" {
+type= map
+default= {
+dev="t2.micro"
+uat="t2.medium"
+prod="t2.large"
+}
+}
+
+
+
+==========================================================================
