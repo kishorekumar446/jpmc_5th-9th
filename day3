@@ -192,7 +192,37 @@ default=["dev","uat","prod"]
 }
 
 ======================================
+root@main-tf:~# cat ec2.tf
+provider "aws" {
+region="ap-south-1"
+}
 
+
+resource "aws_instance" "ec2" {
+  ami                     = "ami-0a7cf821b91bcccbc" #ubuntu
+  #instance_type           = var.type["prod"]
+ instance_type=var.type[count.index]
+ count=3
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-ec2-${var.name[count.index]}"
+  }
+}
+
+variable "type" {
+type= list
+default=["t2.micro","t2.medium","t2.large"]
+}
+
+variable "name" {
+type= list
+default=["dev","uat","prod"]
+}
+
+
+
+
+==================================================
 
 try to do the same , create 3 iam-users with dif names .
 
