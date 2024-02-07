@@ -365,3 +365,91 @@ output "timestamp" {
 }
 
 ================================================
+
+
+
+root@main-tf:~# cat ws.tf
+provider "aws" {
+  region     = "ap-south-1"
+
+}
+
+resource "aws_instance" "myec2" {
+   ami = "ami-06b72b3b2a773be2b"
+   instance_type = lookup(var.instance_type,terraform.workspace)
+tags = {
+    Name = lookup(var.name,terraform.workspace)
+  }
+}
+
+variable "instance_type" {
+  type = map
+
+  default = {
+    default = "t2.nano"
+    dev     = "t2.micro"
+    prod     = "t2.large"
+  }
+}
+
+variable "name"{
+type=map
+default= {
+default="IT server"
+dev="dev-server"
+prod="prod-server"
+}
+}
+
+
+
+
+ terraform workspace list
+  570  terraform workspace -h
+  571  terraform workspace select default
+  572  terraform validate
+  573  terraform plan
+  574  terraform workspace select
+  575  terraform workspace select -h
+  576  terraform workspace list
+  577  terraform workspace select dev
+  578  terraform workspace list
+  579  terraform workspace show
+  580  terraform plan
+  581  terraform workspace select prod
+  582  terraform plan
+  583  ls
+  584  cd terraform.tfstate.d/
+  585  ls
+  586  cd prod/
+  587  ls
+  588  cd ..
+  589  ls
+  590  cd ..
+  591  ls
+  592  terraform apply
+  593  terraform workspace select dev
+  594  terraform apply
+  595  terraform statelist
+  596  terraform state list
+  597  terraform workspace show
+  598  ls
+  599  cd terraform.tfstate.d/
+  600  ls
+  601  cd dev/
+  602  ls
+  603  cd ..
+  604  ls
+  605  cd ..
+  606  ls
+  607  cat terraform.tfstate
+  608  terraform destroy
+  609  ls
+  610  cd terraform.tfstate.d/
+  611  ls
+  612  cd dev/
+  613  ls
+  614  cat terraform.tfstate
+
+
+-===================================================================
