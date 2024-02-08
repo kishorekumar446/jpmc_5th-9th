@@ -1,0 +1,46 @@
+mumbai:
+
+ami name : amzn2-ami-kernel-5.10-hvm-2.0.20240131.0-x86_64-gp2
+amazon linux 2 : latest vrsion
+ami-06b72b3b2a773be2b
+
+
+us-east-1:
+
+
+amazon linux 2 : latest vrsion
+amzn2-ami-kernel-5.10-hvm-2.0.20240131.0-x86_64-gp2
+ami-0cf10cdf9fcd62d37
+
+
+
+
+
+  root@main-tf:~# cat 8_1.tf 
+provider "aws" {
+region="ap-south-1"
+}
+
+
+data "aws_ami" "app_ami" {
+  owners = ["amazon"]
+  most_recent      = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+}
+
+resource "aws_instance" "ec2" {
+  ami                     = data.aws_ami.app_ami.id 
+ instance_type="t2.micro"
+  availability_zone= "ap-south-1b"
+  tags = {
+    Name = "raman-ec2"
+  }
+}
+
+
+
+
+====================================================================
