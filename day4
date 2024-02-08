@@ -207,3 +207,49 @@ name="ec2-prod-server"
 
 
 ====================================
+
+
+
+
+-- state lock  : local env : default there
+
+
+
+-- remote common backend : --state lock , not applied bydefault...
+
+-- create an s3 bucket first .. raman-jpmcccccccccccc-bucketbckend
+
+backend.tf :
+
+terraform {
+  backend "s3" {
+    bucket = "raman-jpmcccccccccccc-bucketbckend"
+    key    = "terraform/state"
+    region = "ap-south-1"
+  }
+}
+
+
+
+
+
+vi backend.tf
+  638  ls
+  639  terraform validate
+  640  terraform plan
+  641  terraform init
+  642  terraform plan
+  643  terraform apply
+  644  ls
+  645  clear
+  646  vi first.tf 
+  647  terraform apply
+
+
+---------------------------------
+
+how to apply state lock on remote bckend :
+
+
+
+======================================================
