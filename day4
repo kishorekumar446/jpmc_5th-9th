@@ -252,4 +252,31 @@ how to apply state lock on remote bckend :
 
 
 
+-- create dynamodb table : tflock with p.key : LockID
+
+root@main-tf:~# cat backend.tf 
+terraform {
+  backend "s3" {
+    bucket = "raman-jpmcccccccccccc-bucketbckend"
+    key    = "terraform/state"
+    region = "ap-south-1"
+    dynamodb_table = "tflock"
+  }
+}
+
+
+
+
+
+
+
+│ Lock Info:
+│   ID:        c8709786-e7ae-1425-a7df-571218342132
+
+
+{"ID":"c8709786-e7ae-1425-a7df-571218342132","Operation":"OperationTypeApply","Info":"","Who":"root@main-tf","Version":"1.7.2","Created":"2024-02-08T11:25:41.510782667Z","Path":"raman-jpmcccccccccccc-bucketbckend/terraform/state"}
+
+======================
+
+
 ======================================================
