@@ -134,6 +134,26 @@ Name= var.name
 }
 }
 
+
+
+
+
+
+root@main-tf:~/test/modules/storage# cat s3.tf 
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-buckiet-jpmccccccccccc"
+
+  tags = {
+    Environment = "Dev"
+  }
+}
+
+
+
+
+
+
+
 root@main-tf:~/test/modules/ec2# cat variable.tf 
 variable "type" {
 default="t2.micro"
