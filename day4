@@ -81,3 +81,109 @@ data "aws_instance" "foo" {
 
 ====================================================================
 
+
+
+
+
+
+
+root@main-tf:~/test# ls
+modules  projects
+root@main-tf:~/test# tree
+.
+├── modules
+│   ├── ec2
+│   │   ├── ec2.tf
+│   │   └── variable.tf
+│   └── storage
+│       └── s3.tf
+└── projects
+    ├── projectA-dev
+    │   ├── main.tf
+    │   ├── terraform.tfstate
+    │   └── terraform.tfstate.backup
+    └── projectB-prod
+        ├── main.tf
+        ├── terraform.tfstate
+        └── terraform.tfstate.backup
+
+6 directories, 9 files
+
+
+
+
+
+root@main-tf:~/test# ls
+modules  projects
+root@main-tf:~/test# cd modules/
+root@main-tf:~/test/modules# ls
+ec2  storage
+root@main-tf:~/test/modules# cd ec2/
+root@main-tf:~/test/modules/ec2# ls
+ec2.tf  variable.tf
+root@main-tf:~/test/modules/ec2# cat ec2.tf 
+provider "aws" {
+region= "ap-south-1"
+}
+
+resource "aws_instance" "myec2" {
+   ami = "ami-06b72b3b2a773be2b"
+   instance_type = var.type
+tags= {
+Name= var.name
+}
+}
+
+root@main-tf:~/test/modules/ec2# cat variable.tf 
+variable "type" {
+default="t2.micro"
+}
+
+variable "name"{
+default="dev-server"
+}
+root@main-tf:~/test/modules/ec2# ls
+ec2.tf  variable.tf
+
+
+
+
+
+
+
+
+root@main-tf:~/test/projects/projectA-dev# cat main.tf 
+provider "aws" {
+region="ap-south-1"
+}
+
+module "ec2mod" {
+source= "/root/test/modules/ec2"
+type="t3.micro"
+}
+
+module "s3mod" {
+source="/root/test/modules/storage"
+}
+
+
+
+
+
+
+
+root@main-tf:~/test/projects/projectB-prod# cat main.tf 
+provider "aws" {
+region="ap-south-1"
+}
+
+module "ec2mod" {
+source= "/root/test/modules/ec2"
+type="t3.medium"
+name="ec2-prod-server"
+}
+
+
+
+
+====================================
