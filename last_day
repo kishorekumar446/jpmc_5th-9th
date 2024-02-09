@@ -76,3 +76,19 @@ ansible-playbook -i /tmp/inv -u ec2-user -b --become-method sudo web.yaml
 ============================================
 
 
+  git clone https://github.com/ramannkhanna2/Ddevops-terraform-ansiblee.git
+  505  cd Ddevops-terraform-ansiblee/
+  506  ls
+  507  git remote -v
+  508  clear
+  509  ls
+  510  vi server.tf
+  511  vi web.yaml
+  512  git status
+  513  git add .
+  514  git status
+  515  git commit -m "made changes"
+  516  git status
+  517  git push origin main
+
+===============================
