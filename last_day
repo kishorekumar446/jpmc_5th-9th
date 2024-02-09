@@ -13,3 +13,37 @@ systemctl status jenkins
 on web ui , be on the dashbaord
 
 ========================================
+
+---- to provide jenkins root previlegs :
+
+
+systemctl status jenkins
+
+vi /usr/lib/systemd/system/jenkins.service
+
+
+
+# Unix account that runs the Jenkins daemon
+# Be careful when you change this, as you need to update the permissions of
+# $JENKINS_HOME, $JENKINS_LOG, and (if you have already run Jenkins)
+# $JENKINS_WEBROOT.
+User=root
+Group=root
+
+
+
+systemctl daemon-reload
+
+systemctl restart jenkins
+
+-- confirm if it has the access now to make configuration changes on server
+
+================================================
+
+
+apt install ansible
+ 1003  ls
+ 1005  ansible --version
+
+===============
+
