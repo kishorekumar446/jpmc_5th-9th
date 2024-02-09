@@ -1,0 +1,15 @@
+-- fork the github repository :
+    
+    https://github.com/ramannkhanna2/Ddevops-terraform-ansiblee.git
+
+-- install jenkins
+
+https://pkg.jenkins.io/debian-stable/
+
+systemctl status jenkins
+
+----
+
+on web ui , be on the dashbaord
+
+========================================
