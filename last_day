@@ -47,3 +47,15 @@ apt install ansible
 
 ===============
 
+
+-- vi /etc/ansible/ansible.cfg
+   uncomment host_key_checking=FALSE
+
+
+
+--- create a keypair on centos hostmachine to import a keypair named raman-import on aws virginia region to authenticate :
+ssh-keygen -t rsa
+-- import the public key to mumbai in creation raman-import key
+
+
+====================================================
